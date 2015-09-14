@@ -1,6 +1,6 @@
 #expose.js
 ###A very lightweight mixin to lazy load images for react
-###A fork of [unveil](http://luis-almeida.github.io/unveil/) by Luis Almeida
+#####A fork of [unveil](http://luis-almeida.github.io/unveil/) by Luis Almeida
 
 
 
