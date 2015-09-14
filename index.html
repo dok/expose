@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="Filtrify">
-        <meta name="keywords" content="javascript, jquery, lazy load, performance, plugin" />
-        <meta name="author" content="Luís Almeida">
+        <meta name="keywords" content="javascript, react, lazy load, performance, mixin" />
+        <meta name="author" content="Sean Dokko">
         <meta name="viewport" content="width=device-width">
-        <title>React Expose - A very lightweight plugin to lazy load images</title>
+        <title>React Expose - A very lightweight mixin to lazy load images</title>
     </head>
 
     <style>
@@ -87,17 +87,24 @@
 
     </style>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0-beta3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0-beta3/JSXTransformer.js"></script>
     <script src="expose.js"></script>
+    </head>
 
     <body>
 
         <header>
             <h1>Expose<small>.js</small></h1>
-            <p>A very lightweight mixin to lazy load images for React</p>
-            <p>A port of unveil.js</p>
+            <p>A very lightweight mixin to lazy load images for React
+            <br/>
+            A port of unveil.js
+            </p>
         </header>
+        <iframe src="http://ghbtns.com/github-btn.html?user=dok&repo=expose&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="55" height="20"></iframe>
+        <iframe src="http://ghbtns.com/github-btn.html?user=dok&repo=expose&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="55" height="20"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="expose.js - A very lightweight mixin to lazy load images" data-count="none">Tweet</a>
 
         <h2 id="usage">Usage</h2>
 
@@ -144,13 +151,25 @@
 
         <h2 id="demo">Demo</h2>
 
+        <div id="images">
+            
+        </div>
+
         <p>If you’re on a “normal” display, unveil will load the low resolution version (800x500). In case you’re on a device with a retina display, the high resolution version (1280x800 in this case) will be loaded instead.</p>
 
         <p>Scroll down to see it working - placeholder images from <a href="http://lorempixel.com/">lorempixel</a>.</p>
 
-        <div id="images">
-            
-        </div>
+        <h2>Browser support</h2>
+        <p>Compatible with All Browsers and IE7+.</p>
+
+        <h2>Download</h2>
+        <p>Download the script from the project page on <a href="https://github.com/dok/expose">GitHub</a>.</p>
+        <p>If you have any suggestion or bug to report please use github issues or get it touch with me on twitter - <a href="https://twitter.com/seandokko">@seandokko</a>.</p>
+
+        <h2>License</h2>
+        <p>Unveil is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+
+
 
         <script type="text/jsx" src="example.js"></script>
     </body>

@@ -4,7 +4,7 @@ var Image = React.createClass({
         this.expose();
     },
     render: function() {
-        var rand = Math.floor(Math.random() * (800));
+        var rand = Math.floor(Math.random() * (1000 - 250) + 250);
         return (
             <li>
                 <img data-src={`http://lorempixel.com/${rand}/200/city`} ref="image"/>
