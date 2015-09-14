@@ -7,7 +7,7 @@
         <meta name="keywords" content="javascript, jquery, lazy load, performance, plugin" />
         <meta name="author" content="Luís Almeida">
         <meta name="viewport" content="width=device-width">
-        <title>jQuery Unveil - A very lightweight plugin to lazy load images</title>
+        <title>React Expose - A very lightweight plugin to lazy load images</title>
     </head>
 
     <style>
@@ -87,124 +87,71 @@
 
     </style>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="jquery.unveil.js"></script>
-
-    <script>
-    $(function() {
-        $("li img").unveil(300);
-    });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0-beta3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0-beta3/JSXTransformer.js"></script>
+    <script src="expose.js"></script>
 
     <body>
 
-    <header>
-        <h1>Unveil<small>.js</small></h1>
-        <p>A very lightweight plugin to lazy load images for jQuery or Zepto.js</p>
+        <header>
+            <h1>Expose<small>.js</small></h1>
+            <p>A very lightweight mixin to lazy load images for React</p>
+            <p>A port of unveil.js</p>
+        </header>
 
-        <iframe src="http://ghbtns.com/github-btn.html?user=luis-almeida&repo=unveil&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="55" height="20"></iframe>
-        <iframe src="http://ghbtns.com/github-btn.html?user=luis-almeida&repo=unveil&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="55" height="20"></iframe>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="unveil.js - A very lightweight plugin to lazy load images" data-via="lmgalmeida" data-related="lmgalmeida" data-count="none">Tweet</a>
-    </header>
+        <h2 id="usage">Usage</h2>
 
-    <p>Most of us are familiar with the <a target="_blank" href="http://www.appelsiini.net/projects/lazyload">Lazy Load</a> plugin by <a target="_blank" href="http://www.appelsiini.net/">Mika Tuupola</a>.
-    <p>This plugin is very useful and it boosts performance delaying loading of images in long web pages because images outside of viewport (visible part of web page) won't be loaded until the user scrolls to them.</p>
-    <p>Lazy Load has some cool options such as custom effects, container, events or data attribute. If you're not gonna use any of them you can reduce the file size by leaving just the essential code to show the images.</p>
-    <p>That's what I did and this is my lightweight version of Lazy Load with support for serving high-resolution images to devices with retina displays - <strong>less than 1k</strong>.</p>
+        <p>Use a placeholder image in the src attribute - something to be displayed while the original image loads - and include the actual image source in a “data-src” attribute.</p>
 
-    <h2>Usage</h2>
-    <p>Use a placeholder image in the src attribute - something to be displayed while the original image loads - and include the actual image source in a "data-src" attribute.</p>
-    <p>If you want to serve high-resolution images to devices with retina displays, you just have to include the source for those images in a "data-src-retina" attribute.</p>
-    <p>You don't need to include a "data-src-retina" attribute in all the image tags, unveil is smart enough to fallback to "data-src" or even do nothing in case there isn't any "data-src" specified.</p>
-    <code>&lt;img <span class="blue">src=</span><span class="red">"bg.png"</span> <span class="blue">data-src=</span><span class="red">"img1.jpg"</span> /></code>
-    <br>
-    <code>&lt;img <span class="blue">src=</span><span class="red">"bg.png"</span> <span class="blue">data-src=</span><span class="red">"img2.jpg"</span> <span class="blue">data-src-retina=</span><span class="red">"img2-retina.jpg"</span> /></code>
-    <br>
-    <p>If you care about users without javascript enabled, you can include the original image inside a &lt;noscript&gt; tag:</p>
-    <code>&lt;noscript&gt;<br>&nbsp;&nbsp;&lt;img <span class="blue">src=</span><span class="red">"img1.jpg"</span> /><br>&lt;/noscript&gt;</code>
-    <br><br>
-    <p>Run the script on document ready:</p>
-    <code>$(<span class="blue">document</span>).ready(<span class="blue">function</span>() {<br>
-    &nbsp;&nbsp;$(<span class="red">"img"</span>).unveil();<br>
-    });</code>
+        <p>If you want to serve high-resolution images to devices with retina displays, you just have to include the source for those images in a “data-src-retina” attribute.</p>
 
-    <h2>Threshold</h2>
-    <p>By default, images are only loaded and "unveiled" when the user scrolls to them and they became visible on the screen.</p>
-    <p>If you want your images to load earlier than that, lets say 200px before they appear on the screen, you just have to:</p>
-    <code>$(<span class="red">"img"</span>).unveil(<span class="purple">200</span>);</code>
+        <p>You don’t need to include a “data-src-retina” attribute in all the image tags, expose is smart enough to fallback to “data-src” or even do nothing in case there isn’t any “data-src” specified.</p>
 
-    <h2>Callback</h2>
-    <p>As a second parameter you can also specify a callback function that will fire after an image has been "unveiled".</p>
-    <p>Inside the callback function <code>this</code> refers to the image's DOM node, so with the help of CSS3 (or jQuery animations) and by attaching a simple load event you can easily add some fancy entrance animation to your images:</p>
-    <code><span class="blue">img</span> {<br>
-    &nbsp;&nbsp;opacity: 0;<br>
-    &nbsp;&nbsp;transition: opacity .3s ease-in;<br>
-    }</code>
-    <br><br>
-    <code>$(<span class="red">"img"</span>).unveil(<span class="purple">200</span>, <span class="blue">function</span>() {<br>
-    &nbsp;&nbsp;$(this).load(<span class="blue">function</span>() {<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;this.style.opacity = 1;<br>
-    &nbsp;&nbsp;});<br>
-    });</code>
 
-    <h2>Trigger</h2>
-    <p>You can still trigger image loading whenever you need.</p>
-    <p>All you have to do is select the images you want to "unveil" and trigger the event:</p>
-    <code>$(<span class="red">"img"</span>).trigger(<span class="red">"unveil"</span>);</code>
 
-    <h2>Lookup</h2>
-    <p>It is also possible to lookup for images in the viewport that haven't been "unveiled" yet.</p>
-    <p>This can be useful, for instance, in case of a tabbed layout.</p>
-    <code>$(<span class="blue">window</span>).trigger(<span class="red">"lookup"</span>);</code>
+        <pre class="prettyprint"><code class="language-js hljs "><span class="hljs-keyword">var</span> expose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'expose'</span>);
+        <span class="hljs-keyword">var</span> Image = React.createClass({
+            mixins: [expose],
+            componentDidMount: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                <span class="hljs-keyword">this</span>.expose();
+            },
+            render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                <span class="hljs-keyword">return</span> (
+                    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">data-src</span>=<span class="hljs-value">"http://placehold.it/350"</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">"image"</span>/&gt;</span>
+                );
+            }
+        });</span></code></pre>
 
-    <h2>Cancel</h2>
-    <p>You can remove all the "unveil" event handlers from "window":</p>
-    <code>$(<span class="blue">window</span>).off(<span class="red">"unveil"</span>);</code>
+        <h2 id="threshold">Threshold</h2>
 
-    <h2>Demo</h2>
-    <p>If you're on a "normal" display, unveil will load the low resolution version (800x500). In case you're on a device with a retina display, the high resolution version (1280x800 in this case) will be loaded instead.</p>
-    <p>Scroll down to see it working - placeholder images from <a href="http://lorempixel.com/">lorempixel</a>.</p>
+        <p>By default, images are only loaded and “unveiled” when the user scrolls to them and they became visible on the screen.</p>
 
-    <ul>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/1" data-src-retina="http://lorempixel.com/g/1280/800/city/1" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/2" data-src-retina="http://lorempixel.com/g/1280/800/city/2" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/3" data-src-retina="http://lorempixel.com/g/1280/800/city/3" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/4" data-src-retina="http://lorempixel.com/g/1280/800/city/4" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/5" data-src-retina="http://lorempixel.com/g/1280/800/city/5" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/6" data-src-retina="http://lorempixel.com/g/1280/800/city/6" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/7" data-src-retina="http://lorempixel.com/g/1280/800/city/7" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/8" data-src-retina="http://lorempixel.com/g/1280/800/city/8" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/9" data-src-retina="http://lorempixel.com/g/1280/800/city/9" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-        <li><img data-src="http://lorempixel.com/g/800/500/city/10" data-src-retina="http://lorempixel.com/g/1280/800/city/10" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" /></li>
-    </ul>
+        <p>If you want your images to load earlier than that, lets say 200px before they appear on the screen, you just have to:</p>
 
-    <h2>Browser support</h2>
-    <p>Compatible with All Browsers and IE7+.</p>
 
-    <h2>Download</h2>
-    <p>Download the script from the project page on <a href="https://github.com/luis-almeida/unveil">GitHub</a>.</p>
-    <p>If you have any suggestion or bug to report please use github issues or get it touch with me on twitter - <a href="https://twitter.com/lmgalmeida">@lmgalmeida</a>.</p>
 
-    <h2>License</h2>
-    <p>Unveil is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+        <pre class="prettyprint"><code class="language-js hljs "><span class="hljs-keyword">this</span>.expose(<span class="hljs-number">400</span>);</code></pre>
 
-    <script>
-    // Twitter
-    !function(d,s,id){
-        var js,fjs=d.getElementsByTagName(s)[0];
-        if(!d.getElementById(id)){
-            js=d.createElement(s);
-            js.id=id;
-            js.src="//platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js,fjs);
-        }
-    }(document,"script","twitter-wjs");
-    // Analytics
-    var _gaq=[['_setAccount','UA-30936310-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+        <h2 id="callback">Callback</h2>
 
+        <p>The callback after the image has been loaded</p>
+
+        <pre class="prettyprint"><code class="language-js hljs ">componentDidMount: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">this</span>.expose(<span class="hljs-number">300</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(
+                console.log('hello')</span>;
+            });
+        }</span></code></pre>
+
+        <h2 id="demo">Demo</h2>
+
+        <p>If you’re on a “normal” display, unveil will load the low resolution version (800x500). In case you’re on a device with a retina display, the high resolution version (1280x800 in this case) will be loaded instead.</p>
+
+        <p>Scroll down to see it working - placeholder images from <a href="http://lorempixel.com/">lorempixel</a>.</p>
+
+        <div id="images">
+            
+        </div>
+
+        <script type="text/jsx" src="example.js"></script>
     </body>
 </html>
