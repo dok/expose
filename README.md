@@ -1,5 +1,6 @@
-#unveil.js
-###A very lightweight plugin to lazy load images for jQuery or Zepto.js
+#expose.js
+###A very lightweight mixin to lazy load images for react
+###A fork of [unveil](http://luis-almeida.github.io/unveil/) by Luis Almeida
 
 
 
@@ -8,7 +9,7 @@ This plugin is very useful and it boosts performance delaying loading of images 
 Lazy Load has some cool options such as custom effects, container, events or data attribute. If you're not gonna use any of them you can reduce the file size by leaving just the essential code to show the images.
 That's what I did and this is my lightweight version of Lazy Load with support for serving high-resolution images to devices with retina displays - less than 1k.
 
-Visit unveil's [project page](http://luis-almeida.github.com/unveil/) to read the documentation and see the demo.
+Visit expose's [project page](http://dok.github.com/expose/) to read the documentation and see the demo.
 
 
 ###Browser support
@@ -16,4 +17,4 @@ Compatible with All Browsers and IE7+.
 
 
 ###License
-Unveil is licensed under the [MIT license](http://opensource.org/licenses/MIT).
+expose is licensed under the [MIT license](http://opensource.org/licenses/MIT).
