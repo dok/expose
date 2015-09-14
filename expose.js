@@ -16,7 +16,7 @@
             return function(cb) {
                 if(!called) {
                     called = true;
-                    var img = this.refs.image;
+                    var img = React.findDOMNode(this.refs.image);
                     if (img) {
                         var retina = window.devicePixelRatio > 1;
                         var attrib = retina ? "data-src-retina" : "data-src";
@@ -35,7 +35,7 @@
         expose: function(th, cb) {
             th = th || 0;
             var self = this;
-            var img = this.refs.image;
+            var img = React.findDOMNode(this.refs.image);
             if (img) {
                 var rev = self._reveal();
                 window.addEventListener('scroll', function() {
